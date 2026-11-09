@@ -1,6 +1,8 @@
 # Cajero automático sencillo
+# Empezamos con los 500 dólares que indica el ejercicio
 saldo = 500.0
 opcion = ""
+# El menú se repite hasta que el usuario decida salir
 while opcion != "4":
     print("\n===== CAJERO AUTOMÁTICO =====")
     print("1. Consultar saldo\n2. Depositar dinero\n3. Retirar dinero\n4. Salir")
@@ -9,12 +11,14 @@ while opcion != "4":
         print("Saldo disponible: $", round(saldo, 2))
     elif opcion == "2" or opcion == "3":
         try:
+            # Evitamos montos negativos o iguales a cero
             monto = float(input("Ingrese el monto: "))
             if monto <= 0:
                 print("El monto debe ser mayor que cero.")
             elif opcion == "2":
                 saldo += monto
                 print("Depósito realizado. Saldo: $", round(saldo, 2))
+                # No permitimos retirar más dinero del disponible
             elif monto > saldo:
                 print("Saldo insuficiente.")
             else:

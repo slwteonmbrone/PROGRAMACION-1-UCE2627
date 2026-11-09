@@ -1,4 +1,5 @@
 # Sistema de ventas con funciones
+# Esta función pide un precio válido
 def pedir_precio():
     while True:
         try:
@@ -9,6 +10,7 @@ def pedir_precio():
         except ValueError:
             print("Ingresa un precio numérico.")
 
+# Esta función comprueba que la cantidad sea positiva
 def pedir_cantidad():
     while True:
         try:
@@ -19,6 +21,7 @@ def pedir_cantidad():
         except ValueError:
             print("Ingresa una cantidad entera.")
 
+# Aquí guardamos los productos de la compra
 productos = []
 subtotal = 0
 while True:
@@ -26,6 +29,8 @@ while True:
     if nombre == "":
         print("El nombre no puede estar vacío.")
         continue
+
+    # Calculamos cuánto cuesta este producto en total
     precio = pedir_precio()
     cantidad = pedir_cantidad()
     importe = precio * cantidad
@@ -35,9 +40,13 @@ while True:
     if continuar != "s":
         break
 
+# Aplicamos el descuento solo si la compra supera los 100 dólares
 descuento = subtotal * 0.10 if subtotal > 100 else 0
 total = subtotal - descuento
+
 print("\n===== RESUMEN DE VENTA =====")
+
+# Mostramos cada producto y el total a pagar
 for nombre, precio, cantidad, importe in productos:
     print(nombre, "|", cantidad, "x $", f"{precio:.2f}", "= $", f"{importe:.2f}")
 print("Subtotal: $", f"{subtotal:.2f}")
